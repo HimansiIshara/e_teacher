@@ -15,7 +15,16 @@ var feedbackModelSchema = new Schema({
         required : [true, 'badge field is required!']
     },
 
-    
+    subject_id : {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Subject',
+        required : [true, 'subject field is required!']
+    },
+    lesson_id : {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Lesson',
+        required : [true, 'lesson field is required!']
+    },
 
     create_date :{
         type : Date,
