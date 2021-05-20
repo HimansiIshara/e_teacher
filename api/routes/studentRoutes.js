@@ -12,4 +12,15 @@ module.exports = function(app){
     app.get("/view-marks", studentController.viewMarks);
     app.post("/post-questions", studentController.postQuestions);
     app.post("/post-answers", studentController.postAnswers);
+
+    //second
+    app.patch("/update-student-profile/:id", studentController.updateStudentProfile);
+    app.delete("/delete-student-profile/:id", studentController.deleteStudentProfile);
+    app.get("/view-feedback/:studentId", studentController.viewFeedBack);
+    app.post("/post-forum-question", studentController.postForumQuestions);
+    app.delete("/delete-forum-question/:id", studentController.deleteForumQuestion);
+    app.post("/answer-forum-question/:id", studentController.answerForumQuestion);
+    app.get("/view-forum-question/:id", studentController.viewForumQuestion);
+    app.get("/view-lesson/:id", studentController.viewLesson);
+
 } 
