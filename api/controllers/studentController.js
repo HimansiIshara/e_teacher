@@ -7,6 +7,7 @@ const {Question} = require('../models/questionModel')
 const {Feedback} = require('../models/feedbackModel')
 const {Forum} = require('../models/forumModel')
 const {Lesson} = require('../models/lessonModel')
+const {ELibrary} = require('../models/eLibraryModel')
 
 exports.searchLesson = async(req,res)=>{
     const {subjectId} = req.query
@@ -188,6 +189,18 @@ exports.viewLesson = async(req,res)=>{
     try {
         const lesson = await Lesson.find(id)
         res.status(200).send({lesson})
+    } catch (error) {
+        res.status(500).send({error:error.message || 'something went wrong'})
+
+    }
+}
+
+
+exports.accessLibrary = async(req,res)=>{
+    const {subjectId} = req.params
+    try {
+        const book = await ELibrary.find({subject_id:subjectId})
+        res.status(200).send({book})
     } catch (error) {
         res.status(500).send({error:error.message || 'something went wrong'})
 

@@ -22,5 +22,6 @@ module.exports = function(app){
     app.post("/answer-forum-question/:id", studentController.answerForumQuestion);
     app.get("/view-forum-question/:id", studentController.viewForumQuestion);
     app.get("/view-lesson/:id", studentController.viewLesson);
+    app.get("/access-library/:subjectId", studentController.accessLibrary);
 
 } 
