@@ -15,6 +15,10 @@ var lessonModelSchema = new Schema({
     create_date :{
         type : Date,
         default : Date.now
+    },
+    approveStatus:{
+        type:Boolean,
+        default:false
     }
 });
 
