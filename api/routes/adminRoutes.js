@@ -13,10 +13,26 @@ module.exports = function(app){
     app.delete("/delete-teacher/:id",adminController.deleteAdmin);
 
     app.patch("/approve-reject-lesson/:id",adminController.approveOrRejectLesson);
+    
+    
+    // question Answers
+    app.patch("/update-qanswer/:id",adminController.updateQuestionAnswer);
+    app.delete("/delete-qanswer/:id",adminController.deleteQuestionAnswer);
+    
+    // ELibrary
+    app.patch("/update-elibraryy/:id",adminController.updateELibrary);
+    app.delete("/delete-elibraryy/:id",adminController.deleteELibrary);
+    
+    // forum
+    app.delete("/delete-forum-question/:id",adminController.deleteForumQuestion);
+    app.delete("/delete-forum-answer/:id",adminController.deleteForumAnswer);
+    app.get("/view-forum-answer/:id",adminController.viewForumAnswers);
+    app.get("/view-forum-question/:id",adminController.viewForumQuestion);
+    
+    // lesson
     app.get("/view-lesson/:id",adminController.viewLesson);
-    app.patch("/delete-lesson/:id",adminController.deleteLesson);
-
-
+    app.delete("/delete-lesson/:id",adminController.deleteLesson);
+    app.patch("/update-lesson/:id",adminController.updateLesson);
 
 
     

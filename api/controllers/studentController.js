@@ -8,6 +8,7 @@ const {Feedback} = require('../models/feedbackModel')
 const {Forum} = require('../models/forumModel')
 const {Lesson} = require('../models/lessonModel')
 const {ELibrary} = require('../models/eLibraryModel')
+const {Forum} = require('../models/forumModel')
 
 exports.searchLesson = async(req,res)=>{
     const {subjectId} = req.query
@@ -204,5 +205,16 @@ exports.accessLibrary = async(req,res)=>{
     } catch (error) {
         res.status(500).send({error:error.message || 'something went wrong'})
 
+    }
+}
+
+exports.viewForumAnswers = async(req,res)=>{
+    const {id} = req.params
+    try {
+        const forumData = await Forum.find(id)
+        const answer = forumData['forum_answer']
+        res.status(200).send({answer})
+    } catch (error) {
+        res.status(500).send({error:error.message || 'something went wrong'})
     }
 }
