@@ -16,6 +16,8 @@ module.exports = function(app){
     
     
     // question Answers
+
+    app.post("/post-qanswer",adminController.postQuestionAnswer);
     app.patch("/update-qanswer/:id",adminController.updateQuestionAnswer);
     app.delete("/delete-qanswer/:id",adminController.deleteQuestionAnswer);
     
@@ -33,6 +35,12 @@ module.exports = function(app){
     app.get("/view-lesson/:id",adminController.viewLesson);
     app.delete("/delete-lesson/:id",adminController.deleteLesson);
     app.patch("/update-lesson/:id",adminController.updateLesson);
+
+    // subject
+    app.post("/create-subject",adminController.createSubject);
+    app.post("/remove-subject/:id",adminController.removeSubject);
+
+
 
 
     

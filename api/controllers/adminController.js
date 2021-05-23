@@ -5,6 +5,7 @@ const {Lesson} = require('../models/lessonModel')
 const {Forum} = require('../models/forumModel')
 const {ELibrary} = require('../models/eLibraryModel')
 const {QAnswer} = require('../models/qAnswerModel')
+const {Subject} = require('../models/subjectModel')
 
 exports.viewMyProfile = async(req,res)=>{
     const {id} = req.params
@@ -208,6 +209,17 @@ exports.deleteELibrary = async(req,res)=>{
     }
 }
 
+exports.postQuestionAnswer = async(req,res)=>{
+    const data = req.body
+    try {
+        const questionAnswer = await QAnswer.create({...data})
+        res.status(200).send({questionAnswer})
+    } catch (error) {
+        res.status(500).send({error:error.message || 'something went wrong'})
+        
+    }
+}
+
 exports.updateQuestionAnswer = async(req,res)=>{
     const {id} = req.params
     const data = req.body
@@ -228,6 +240,28 @@ exports.deleteQuestionAnswer = async(req,res)=>{
     } catch (error) {
         res.status(500).send({error:error.message || 'something went wrong'})
         
+    }
+}
+
+exports.createSubject = async(req,res)=>{
+    const data = req.body
+    try {
+        const subject = await Subject.create({...data})
+        res.status(200).send({subject})
+    } catch (error) {
+        res.status(500).send({error:error.message || 'something went wrong'})
+
+    }
+}
+
+exports.removeSubject = async(req,res)=>{
+    const id = req.params
+    try {
+        const deleted = await Subject.findByIdAndDelete(id)
+        res.status(200).send({deleted})
+    } catch (error) {
+        res.status(500).send({error:error.message || 'something went wrong'})
+
     }
 }
 
