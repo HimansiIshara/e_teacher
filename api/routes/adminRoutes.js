@@ -22,6 +22,7 @@ module.exports = function(app){
     app.delete("/delete-qanswer/:id",adminController.deleteQuestionAnswer);
     
     // ELibrary
+    app.patch("/upload-elibrary",adminController.uploadElibrary);
     app.patch("/update-elibraryy/:id",adminController.updateELibrary);
     app.delete("/delete-elibraryy/:id",adminController.deleteELibrary);
     
@@ -40,6 +41,10 @@ module.exports = function(app){
     app.post("/create-subject",adminController.createSubject);
     app.post("/remove-subject/:id",adminController.removeSubject);
 
+    //question
+    app.post("/post-question",adminController.postQuestion);
+    app.patch("/update-question/:id",adminController.updateQuestion);
+    app.delete("/delete-question/:id",adminController.deleteQuestion);
 
 
 
