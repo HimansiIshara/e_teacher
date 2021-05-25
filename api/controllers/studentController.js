@@ -50,7 +50,7 @@ exports.getAnswers = async(req,res)=>{
 }
 
 exports.viewStudentProfile = async(req,res)=>{
-    const {studentId} = req.query
+    const {studentId} = req.params
     try {
         const student = await Student.find({user_id:studentId})
         res.status(200).send({student})
@@ -61,10 +61,33 @@ exports.viewStudentProfile = async(req,res)=>{
 }
 
 exports.viewTutroProfile = async(req,res)=>{
-    const {tutorId} = req.query
+    const {tutorId} = req.params
     try {
         const tutor = await Teacher.find({user_id:tutorId})
         res.status(200).send({tutor})
+    } catch (error) {
+        res.status(500).send({error:error.message || 'something went wrong'})
+
+    }
+}
+
+exports.updateOwnProfile = async(req,res)=>{
+    const {id} = req.params
+    const data = req.body
+    try {
+        const upatedProfile = await Teacher.findByIdAndUpdate(id, {...data}, {new:true})
+        res.status(200).send({upatedProfile})
+    } catch (error) {
+        res.status(500).send({error:error.message || 'something went wrong'})
+
+    }
+}
+
+exports.deleteOwnProfile = async(req,res)=>{
+    const {id} = req.params
+    try {
+        const deleted = await Teacher.findByIdAndDelete(id)
+        res.status(200).send({deleted})
     } catch (error) {
         res.status(500).send({error:error.message || 'something went wrong'})
 
@@ -214,6 +237,16 @@ exports.viewForumAnswers = async(req,res)=>{
         const forumData = await Forum.find(id)
         const answer = forumData['forum_answer']
         res.status(200).send({answer})
+    } catch (error) {
+        res.status(500).send({error:error.message || 'something went wrong'})
+    }
+}
+
+exports.searchLesson = async(req,res)=>{
+    const {id} = req.params
+    try {
+        const lesson = await Lesson.find(id)
+        res.status(200).send({lesson})
     } catch (error) {
         res.status(500).send({error:error.message || 'something went wrong'})
     }
