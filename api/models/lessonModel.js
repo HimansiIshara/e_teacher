@@ -19,7 +19,12 @@ var lessonModelSchema = new Schema({
     approveStatus:{
         type:Boolean,
         default:false
-    }
+    },
+    user_id : {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required : [true, 'user id required']
+    },
 });
 
 const Lesson = mongoose.model('Lesson',lessonModelSchema);
