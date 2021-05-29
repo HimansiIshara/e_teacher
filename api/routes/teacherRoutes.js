@@ -24,6 +24,22 @@ module.exports = function(app){
     app.delete("/delete-forum-answer/:id", teacherController.deleteForumAnswer);
 
 
+    // e library
+    app.get("/view-library/:id", teacherController.viewLibrary);
+    app.post("/pot-library", teacherController.uploadlibrary);
+    app.patch("/update-library/:id", teacherController.updatelibrary);
+    app.delete("/delete-library/:id", teacherController.deletelibrary);
 
+    // quizes
+    app.get("/view-quiz/:id", teacherController.viewquiz);
+    app.post("/pot-quiz", teacherController.uploadquiz);
+    app.patch("/update-quiz/:id", teacherController.updatequiz);
+    app.delete("/delete-quiz/:id", teacherController.deletequiz);
+
+    // Qanswer
+    app.get("/view-qAnswer/:id", teacherController.viewqanswer);
+    app.post("/pot-qAnswer", teacherController.uploadqanswer);
+    app.patch("/update-qAnswer/:id", teacherController.updateqanswer);
+    app.delete("/delete-qAnswer/:id", teacherController.deleteqanswer);
 
 } 

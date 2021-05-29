@@ -2,6 +2,10 @@ const {Student} = require('../models/studentModel')
 const {Teacher} = require('../models/teacherModel')
 const {Lesson} = require('../models/lessonModel')
 const {Forum} = require('../models/forumModel')
+const {ELibrary} = require('../models/eLibraryModel')
+const {Question} = require('../models/questionModel')
+const {QAnswer} = require('../models/qAnswerModel')
+const {QAnswer} = require('../models/')
 
 
 
@@ -196,5 +200,160 @@ exports.deleteForumAnswer = async()=>{
     } catch (error) {
         res.status(500).send({error:error.message || 'something went wrong'})
 
+    }
+}
+
+
+
+// library
+exports.viewLibrary = async(req,res)=>{
+    const {id} = req.params
+    try {
+        const library = await ELibrary.find(id)
+        res.status(200).send({library})
+    } catch (error) {
+        res.status(500).send({error:error.message || 'something went wrong'})
+    }
+}
+
+exports.uploadlibrary = async(req,res)=>{
+
+    const data = req.body
+
+    try {
+        const library = await ELibrary.create({...data})
+        res.status(200).send({library})
+    } catch (error) {
+        res.status(500).send({error:error.message || 'something went wrong'})
+    }
+}
+
+exports.updatelibrary = async(req,res)=>{
+
+    const data = req.body
+    const {id} = req.params
+
+    try {
+        const updatedlibrary = await ELibrary.findByIdAndUpdate(id, {...data}, {new:true})
+
+        res.status(200).send({updatedlibrary})
+    } catch (error) {
+        res.status(500).send({error:error.message || 'something went wrong'})
+    }
+}
+
+
+exports.deletelibrary = async(req,res)=>{
+
+    const {id} = req.params
+
+    try {
+        const deleted = await ELibrary.findByIdAndDelete(id)
+        res.status(200).send({deleted})
+    } catch (error) {
+        res.status(500).send({error:error.message || 'something went wrong'})
+    }
+}
+
+
+// quiz
+exports.viewquiz = async(req,res)=>{
+    const {id} = req.params
+    try {
+        const quiz = await Question.find(id)
+        res.status(200).send({quiz})
+    } catch (error) {
+        res.status(500).send({error:error.message || 'something went wrong'})
+    }
+}
+
+exports.uploadquiz = async(req,res)=>{
+
+    const data = req.body
+
+    try {
+        const quiz = await Question.create({...data})
+        res.status(200).send({quiz})
+    } catch (error) {
+        res.status(500).send({error:error.message || 'something went wrong'})
+    }
+}
+
+exports.updatequiz = async(req,res)=>{
+
+    const data = req.body
+    const {id} = req.params
+
+    try {
+        const updatedquiz = await Question.findByIdAndUpdate(id, {...data}, {new:true})
+
+        res.status(200).send({updatedquiz})
+    } catch (error) {
+        res.status(500).send({error:error.message || 'something went wrong'})
+    }
+}
+
+
+exports.deletequiz = async(req,res)=>{
+
+    const {id} = req.params
+
+    try {
+        const deleted = await Question.findByIdAndDelete(id)
+        res.status(200).send({deleted})
+    } catch (error) {
+        res.status(500).send({error:error.message || 'something went wrong'})
+    }
+}
+
+
+
+//qanswer
+exports.viewqanswer = async(req,res)=>{
+    const {id} = req.params
+    try {
+        const qanswer = await QAnswer.find(id)
+        res.status(200).send({qanswer})
+    } catch (error) {
+        res.status(500).send({error:error.message || 'something went wrong'})
+    }
+}
+
+exports.uploadqanswer = async(req,res)=>{
+
+    const data = req.body
+
+    try {
+        const qanswer = await QAnswer.create({...data})
+        res.status(200).send({qanswer})
+    } catch (error) {
+        res.status(500).send({error:error.message || 'something went wrong'})
+    }
+}
+
+exports.updateqanswer = async(req,res)=>{
+
+    const data = req.body
+    const {id} = req.params
+
+    try {
+        const updatedqanswer = await QAnswer.findByIdAndUpdate(id, {...data}, {new:true})
+
+        res.status(200).send({updatedqanswer})
+    } catch (error) {
+        res.status(500).send({error:error.message || 'something went wrong'})
+    }
+}
+
+
+exports.deleteqanswer = async(req,res)=>{
+
+    const {id} = req.params
+
+    try {
+        const deleted = await QAnswer.findByIdAndDelete(id)
+        res.status(200).send({deleted})
+    } catch (error) {
+        res.status(500).send({error:error.message || 'something went wrong'})
     }
 }
