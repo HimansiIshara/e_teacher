@@ -6,8 +6,9 @@ router.get('/', function(req, res){
 });
 
 require('./authRoutes')(router);
-//require('./teacherRoutes')(router);
-//require('./studentRoutes')(router);
+require('./adminRoutes')(router);
+require('./teacherRoutes')(router);
+require('./studentRoutes')(router);
 
 
 module.exports.router = router;

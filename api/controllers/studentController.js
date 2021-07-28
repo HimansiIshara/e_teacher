@@ -8,7 +8,6 @@ const {Feedback} = require('../models/feedbackModel')
 const {Forum} = require('../models/forumModel')
 const {Lesson} = require('../models/lessonModel')
 const {ELibrary} = require('../models/eLibraryModel')
-const {Forum} = require('../models/forumModel')
 
 exports.searchLesson = async(req,res)=>{
     const {subjectId} = req.query

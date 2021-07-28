@@ -1,24 +1,38 @@
 const {User} = require("../models/userModel");
+const {Student} = require('../models/studentModel')
+const {Admin} = require('../models/adminModel')
+const {Teacher} = require('../models/teacherModel')
 
-exports.registerUser = (req, res)=>{
-    const user = new User(req.body);
 
-    user.save((err,doc)=>{
-        if(err){
-            return res.status(422).json({
-                success: false,
-                message: "registration faild. try again..!",
-                data: err
-            });
-        }else{
+exports.registerUser = async(req, res)=>{
+    
+    try {
+        const user = await User.create({...req.body});
+        let {role} = req.body
+            if(role == 'ADMIN'){
+                await Admin.create({ user_id:user._id, ...req.body})
+            }
+            if(role == 'STUDENT'){
+                await Student.create({ user_id:user._id, ...req.body})
+            }
+            if(role == 'TEACHER'){
+                await Teacher.create({ user_id:user._id, ...req.body})
+            }
             return res.status(200).json({
                 success: true,
                 message: "successfully registered!",
                 
-            });
+            }); 
+        
+    } catch (err) {
+        res.status(422).json({
+            success: false,
+            message: "registration faild. try again..!",
+            data: err
+        });
+    }
+
     
-        }
-    });
 
     
 }
